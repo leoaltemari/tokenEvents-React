@@ -22,7 +22,7 @@ function NavBar() {
 	useEffect(() => {
 		function onWindowResize() {
 			const windowWidth = window.innerWidth;
-			windowWidth < 980 ? setDropDown(true) : setDropDown(false);
+			windowWidth < 900 ? setDropDown(true) : setDropDown(false);
 		}
 		window.addEventListener("resize", onWindowResize);
 		return () => window.removeEventListener("resize", onWindowResize);
