@@ -1,10 +1,17 @@
 import React from "react";
 
+import Banner from "../components/homepage/Banner";
+import Footer from "../components/homepage/Footer";
+
+import "../styles/homepage.css";
+import "../styles/utils.css";
+
 function Home() {
 	return (
-		<div>
-			<h1>Home</h1>
-		</div>
+		<main className="main__page">
+			<Banner />
+			<Footer />
+		</main>
 	);
 }
 

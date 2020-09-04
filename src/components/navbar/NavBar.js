@@ -8,12 +8,22 @@ import DropDown from "./DropDown";
 function NavBar() {
 	let [dropDown, setDropDown] = useState(false);
 
+	function navBorder(id) {
+		const links = document.getElementsByClassName("navbar__link");
+		for (let i = 0; i < 3; i++) {
+			if (i === id) links[i].classList.add("navbar__links__underline");
+			else links[i].classList.remove("navbar__links__underline");
+		}
+	}
+
 	const dropDownMenu = <DropDown />;
 	const normalMenu = (
 		<div>
-			<Links />
+			<Links navBorder={navBorder} />
 			<div className="navbar__login">
-				<Link to="/login">Login</Link>
+				<Link to="/login" onClick={() => navBorder(4)}>
+					Login
+				</Link>
 			</div>
 		</div>
 	);
@@ -22,7 +32,7 @@ function NavBar() {
 	useEffect(() => {
 		function onWindowResize() {
 			const windowWidth = window.innerWidth;
-			windowWidth < 980 ? setDropDown(true) : setDropDown(false);
+			windowWidth < 750 ? setDropDown(true) : setDropDown(false);
 		}
 		window.addEventListener("resize", onWindowResize);
 		return () => window.removeEventListener("resize", onWindowResize);
