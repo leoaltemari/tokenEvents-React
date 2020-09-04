@@ -4,15 +4,7 @@ import "../../styles/navbar.css";
 
 // Utils
 
-function Links() {
-	function navBorder(id) {
-		const links = document.getElementsByClassName("navbar__link");
-		for (let i = 0; i < 3; i++) {
-			if (i === id) links[i].classList.add("navbar__links__underline");
-			else links[i].classList.remove("navbar__links__underline");
-		}
-	}
-
+function Links({ navBorder }) {
 	return (
 		<div className="navbar__links">
 			<Link
