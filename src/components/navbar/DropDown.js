@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 
 import "../../styles/hamburguer.css";
 
-function DropDown() {
-	function closeMenu() {
+function DropDown({ loginState }) {
+	function closeMenu(id) {
 		const checkBox = document.querySelector("#menu-hamburguer");
 		checkBox.checked = !checkBox.checked;
+
+		if (id === 4) {
+			loginState();
+		}
 	}
 	return (
 		<div>
@@ -33,7 +37,7 @@ function DropDown() {
 					</Link>
 				</li>
 				<li>
-					<Link to="/login" onClick={() => closeMenu()}>
+					<Link to="/login" onClick={() => closeMenu(4)}>
 						Login
 					</Link>
 				</li>

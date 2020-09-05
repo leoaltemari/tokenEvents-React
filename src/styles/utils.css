@@ -22,3 +22,41 @@
 .main__button:focus {
 	outline: none;
 }
+
+/* Form inputs */
+input:focus {
+	outline: none;
+}
+
+.form__field {
+	margin: 10px 0px;
+	width: 100%;
+}
+
+.form__name {
+	display: flex;
+	align-items: center;
+	margin: 10px 0px;
+	color: #589dd4;
+}
+
+.form__name img {
+	height: 20px;
+	width: 20px;
+	margin-right: 10px;
+}
+
+.form__input {
+	height: 40px;
+	width: 100%;
+	border: 1px solid #424242;
+	border-radius: 5px;
+	box-sizing: border-box;
+	padding-left: 30px;
+	transition: 0.3s ease-out;
+}
+
+.form__input:focus {
+	outline: none;
+	border: 1px solid #589dd4;
+}

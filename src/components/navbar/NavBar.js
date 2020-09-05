@@ -5,7 +5,7 @@ import "../../styles/navbar.css";
 import Links from "./Links";
 import DropDown from "./DropDown";
 
-function NavBar() {
+function NavBar({ loginState }) {
 	let [dropDown, setDropDown] = useState(false);
 
 	function navBorder(id) {
@@ -16,12 +16,12 @@ function NavBar() {
 		}
 	}
 
-	const dropDownMenu = <DropDown />;
+	const dropDownMenu = <DropDown loginState={loginState} />;
 	const normalMenu = (
 		<div>
 			<Links navBorder={navBorder} />
 			<div className="navbar__login">
-				<Link to="/login" onClick={() => navBorder(4)}>
+				<Link to="/login" onClick={loginState}>
 					Login
 				</Link>
 			</div>

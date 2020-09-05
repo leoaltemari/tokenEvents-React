@@ -1,0 +1,97 @@
+.login__bkg {
+	position: relative;
+	right: 0px;
+	height: 100%;
+	background-size: cover;
+	background-position: center center;
+	border: none;
+	object-fit: contain;
+	background-image: url("../assets//images/login_bkg.jpg");
+}
+
+.login__form {
+	padding: 45px;
+}
+
+.login__content {
+	display: grid;
+	grid-template-columns: 1fr 4fr;
+	height: 100vh;
+	position: absolute;
+	top: -64px;
+}
+
+.login__form {
+	height: 100vh;
+}
+
+.form__banner h4 {
+	font-size: 15px;
+	margin: 25px 0px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.main__button {
+	width: 100%;
+	margin: 20px 0px;
+}
+
+.login__register {
+	letter-spacing: 2px;
+}
+
+.login__register a {
+	color: #589dd4;
+	text-decoration: none;
+}
+
+.form__errors {
+	padding: 15px;
+	margin-top: 10px;
+	background-color: rgba(255, 122, 122, 0.5);
+	color: rgb(255, 45, 45);
+	border-radius: 5px;
+	animation: show 1s;
+}
+
+.form__success {
+	padding: 15px;
+	margin-top: 10px;
+	background-color: rgba(129, 255, 112, 0.37);
+	color: rgb(0, 167, 0);
+	border-radius: 5px;
+	animation: show 1s;
+}
+
+.form__errors h6,
+.form__success h6 {
+	margin: 5px 0px;
+	text-align: left;
+}
+
+@keyframes show {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+.register__content {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	height: 100vh;
+	width: 100%;
+	position: absolute;
+	top: -64px;
+}
+.register__form {
+	text-align: center;
+	height: 100%;
+}
+.form__grid__fields {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	column-gap: 10px;
+}
