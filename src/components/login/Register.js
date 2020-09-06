@@ -36,7 +36,7 @@ function Register({ loginState }) {
 			inputData.password,
 			inputData.confirmPassword
 		);
-		// console.log(res);
+
 		if (res.status === 0) {
 			setSuccess(res.success);
 			setTimeout(() => {
@@ -44,7 +44,7 @@ function Register({ loginState }) {
 			}, 3000);
 		} else if (res.status === 1) {
 			if (res.errors) {
-				const err = new Array([]);
+				const err = [];
 				err.push(res.errors);
 				setErrors(err);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 import Navbar from "./components/navbar/NavBar";
@@ -22,13 +22,32 @@ export const AppRoutes = () => {
 
 	function getUser(user) {
 		if (user) {
+			window.localStorage.setItem("user", JSON.stringify(user));
 			setUser(user);
 		}
 	}
 
+	function logOut() {
+		window.localStorage.clear();
+		setUser({});
+	}
+
+	useEffect(() => {
+		const localUser = JSON.parse(window.localStorage.getItem("user"));
+		if (localUser !== null) {
+			setUser(localUser);
+		}
+	}, []);
+
 	return (
 		<BrowserRouter>
-			{login && <Navbar loginState={loginHandleClick} user={user} />}
+			{login && (
+				<Navbar
+					loginState={loginHandleClick}
+					user={user}
+					logOut={logOut}
+				/>
+			)}
 			<Switch>
 				<Route exact path="/" component={HomePage} />
 				<Route
@@ -48,7 +67,11 @@ export const AppRoutes = () => {
 						<RegisterPage loginState={loginHandleClick} />
 					)}
 				/>
-				<Route exact path="/user" component={UserPage} user={user} />
+				<Route
+					exact
+					path="/user"
+					render={props => <UserPage user={user} getUser={getUser} />}
+				/>
 			</Switch>
 		</BrowserRouter>
 	);

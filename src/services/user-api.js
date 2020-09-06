@@ -4,6 +4,17 @@ import userRequest from "./user-requests";
 // import validator from "./validators/user-validator";
 
 function UserApi() {}
+
+UserApi.prototype.getUser = async id => {
+	try {
+		const response = await axios.get(`${userRequest.route}/${id}`);
+		if (response.data.name) {
+			return response.data;
+		}
+	} catch (err) {
+		console.log(err);
+	}
+};
 UserApi.prototype.login = async (email, password) => {
 	if (!email || !password) {
 		return {
@@ -68,6 +79,64 @@ UserApi.prototype.register = async (name, email, password, confirmPsw) => {
 				};
 			}
 			const arrayOfErrors = new Array([]);
+			response.data.forEach(item => arrayOfErrors.push(item.message));
+			return {
+				status: 2,
+				errors: arrayOfErrors,
+			};
+		} else {
+			return {
+				status: 0,
+				success: response.data.message,
+			};
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+UserApi.prototype.update = async (
+	name,
+	email,
+	password,
+	confirmPsw,
+	token,
+	id
+) => {
+	const userData = {
+		token: token,
+	};
+
+	if (name) {
+		userData.name = name;
+	}
+	if (email) {
+		userData.email = email;
+	}
+	if (password) {
+		if (password !== confirmPsw) {
+			return {
+				status: 1,
+				errors: ["As senhas não são iguais!"],
+			};
+		}
+		userData.password = password;
+	}
+
+	try {
+		const response = await axios.put(
+			`${userRequest.route}/${id}`,
+			userData
+		);
+
+		if (response.status === 202) {
+			if (response.data.message) {
+				return {
+					status: 1,
+					errors: response.data.message,
+				};
+			}
+			const arrayOfErrors = [];
 			response.data.forEach(item => arrayOfErrors.push(item.message));
 			return {
 				status: 2,

@@ -30,6 +30,7 @@ function Login({ loginState, getUser }) {
 		const res = await userApi.login(inputData.email, inputData.password);
 		if (res.status === 0) {
 			getUser(res.user);
+			window.localStorage.setItem("user", JSON.stringify(res.user));
 			loginState();
 			document.querySelector("#user-page").click();
 		} else {
@@ -89,7 +90,7 @@ function Login({ loginState, getUser }) {
 				</div>
 			</form>
 			<div className="login__bkg"></div>
-			<Link to="/user" id="user-page" />
+			<Link to="/" id="user-page" />
 		</div>
 	);
 }

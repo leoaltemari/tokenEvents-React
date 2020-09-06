@@ -2,10 +2,17 @@ import React from "react";
 
 import "../styles/utils.css";
 
-function UserPage({ user }) {
+import UserData from "../components/user/UserData";
+
+import NotFound from "../components/utils/NotFound";
+function UserPage({ user, getUser }) {
 	return (
 		<main className="main__page">
-			<h1>User Page</h1>
+			{!user.token ? (
+				<NotFound />
+			) : (
+				<UserData user={user} getUser={getUser} />
+			)}
 		</main>
 	);
 }

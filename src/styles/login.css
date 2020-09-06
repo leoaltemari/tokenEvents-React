@@ -45,38 +45,6 @@
 	text-decoration: none;
 }
 
-.form__errors {
-	padding: 15px;
-	margin-top: 10px;
-	background-color: rgba(255, 122, 122, 0.5);
-	color: rgb(255, 45, 45);
-	border-radius: 5px;
-	animation: show 1s;
-}
-
-.form__success {
-	padding: 15px;
-	margin-top: 10px;
-	background-color: rgba(129, 255, 112, 0.37);
-	color: rgb(0, 167, 0);
-	border-radius: 5px;
-	animation: show 1s;
-}
-
-.form__errors h6,
-.form__success h6 {
-	margin: 5px 0px;
-	text-align: left;
-}
-
-@keyframes show {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
 
 .register__content {
 	display: grid;
