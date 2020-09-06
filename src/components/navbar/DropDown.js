@@ -30,7 +30,7 @@ function DropDown({ loginState, user, logOutUser }) {
 					</Link>
 				</li>
 				<li>
-					<Link to="/eventos" onClick={() => closeMenu()}>
+					<Link to="/events" onClick={() => closeMenu()}>
 						Eventos
 					</Link>
 				</li>
