@@ -109,6 +109,10 @@ input:checked ~ ul {
 	opacity: 1;
 }
 
+input:checked ~ ul li a {
+	display: block;
+}
+
 ul {
 	position: absolute;
 	top: 150px;
@@ -122,7 +126,7 @@ ul {
 
 ul li a {
 	color: white;
-	display: block;
+	display: hidden;
 	margin-bottom: 1em;
 	text-decoration: none;
 }

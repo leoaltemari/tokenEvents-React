@@ -1,7 +1,6 @@
 import axios from "./axios";
 import userRequest from "./user-requests";
 
-// import validator from "./validators/user-validator";
 
 function UserApi() {}
 

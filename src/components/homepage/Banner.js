@@ -14,9 +14,9 @@ function Banner() {
 					eventos, que busca sempre trazer a melhor qualidade e
 					conforto para você, seja em uma festa um show ou festivais.
 				</p>
-				<button className="main__button banner__button">
-					CRIE SEUS EVENTOS
-				</button>
+				<div className="banner__button">
+					<button className="main__button">CRIE SEUS EVENTOS</button>
+				</div>
 			</div>
 		</section>
 	);

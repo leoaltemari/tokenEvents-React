@@ -45,7 +45,7 @@
 
 .banner__button {
 	font-size: 15px;
-	margin: 20px 0px;
+	margin: 0px 20%;
 }
 
 @media (max-width: 540px) {
@@ -59,8 +59,12 @@
 	}
 
 	.banner__button {
+		margin: 20px 0px;
+	}
+	.banner__button button {
 		font-size: 10px;
 		padding: 15px 30px;
+		margin: 0px;
 	}
 }
 
