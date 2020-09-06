@@ -35,8 +35,13 @@ function DropDown({ loginState, user, logOutUser }) {
 					</Link>
 				</li>
 				<li>
-					<Link to="/convites" onClick={() => closeMenu()}>
-						Convites
+					<Link
+						to={user.token ? "/user/events" : "/login"}
+						onClick={
+							user.token ? () => closeMenu() : () => closeMenu(4)
+						}
+					>
+						Meus Eventos
 					</Link>
 				</li>
 				<li>

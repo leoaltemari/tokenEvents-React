@@ -43,7 +43,11 @@ function NavBar({ loginState, user, logOut }) {
 	);
 	const normalMenu = (
 		<div>
-			<Links navBorder={navBorder} />
+			<Links
+				navBorder={navBorder}
+				removeNavBorder={removeNavBorder}
+				user={user}
+			/>
 			<div className="navbar__login">
 				{user.token ? (
 					<div>
@@ -72,9 +76,9 @@ function NavBar({ loginState, user, logOut }) {
 	useEffect(() => {
 		function onWindowResize() {
 			const windowWidth = window.innerWidth;
-			windowWidth < 750 ? setDropDown(true) : setDropDown(false);
+			windowWidth < 800 ? setDropDown(true) : setDropDown(false);
 		}
-		if (window.innerWidth < 750) onWindowResize();
+		if (window.innerWidth < 800) onWindowResize();
 		window.addEventListener("resize", onWindowResize);
 		return () => window.removeEventListener("resize", onWindowResize);
 	}, []);

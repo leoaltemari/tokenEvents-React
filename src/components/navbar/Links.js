@@ -4,7 +4,7 @@ import "../../styles/navbar.css";
 
 // Utils
 
-function Links({ navBorder }) {
+function Links({ navBorder, removeNavBorder, user }) {
 	return (
 		<div className="navbar__links">
 			<Link
@@ -15,18 +15,23 @@ function Links({ navBorder }) {
 				Home
 			</Link>
 			<Link
-				to="/eventos"
+				to="/events"
 				className="navbar__link"
 				onClick={() => navBorder(1)}
 			>
 				Eventos
 			</Link>
+
 			<Link
-				to="/convites"
+				to={user.token ? "/user/events" : "/login"}
 				className="navbar__link"
-				onClick={() => navBorder(2)}
+				onClick={
+					user.token
+						? () => navBorder(2)
+						: () => removeNavBorder("login")
+				}
 			>
-				Convites
+				Meus Eventos
 			</Link>
 		</div>
 	);
