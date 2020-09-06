@@ -8,6 +8,12 @@
 	gap: 10px;
 }
 
+.events__display h1 {
+	text-align: center;
+	color: #589dd4;
+	font-size: 15px;
+}
+
 .events__display__title {
 	font-family: sans-serif;
 	color: #589dd4;
@@ -80,9 +86,15 @@
 	padding: 20px 100px;
 	border-bottom: 1px solid rgb(190, 190, 190);
 }
-.event__config h1 {
+.event__config h1,
+.my__events {
 	color: #589dd4;
 	text-align: center;
+}
+.my__events {
+	margin: 0px 10px;
+	padding-top: 20px;
+	border-top: 1px solid rgb(196, 196, 196);
 }
 
 .event__config h2 {
@@ -119,6 +131,7 @@
 	margin: 0px 30%;
 	position: relative;
 	top: 10px;
+	margin-bottom: 20px;
 }
 
 @media (max-width: 500px) {

@@ -5,6 +5,7 @@ import "../../styles/event.css";
 
 import EventApi from "../../services/event-api";
 
+import Event from "../utils/Event";
 import AddEvent from "./AddEvents";
 import UpdateEvent from "./UpdateEvents";
 import RemoveEvent from "./RemoveEvents";
@@ -18,6 +19,10 @@ function EventConfig({ user }) {
 			try {
 				if (user.token) {
 					const res = await eventApi.getByUser(user._id, user.token);
+					res.forEach(event => {
+						event.startDate = new Date(event.startDate);
+						event.finishDate = new Date(event.finishDate);
+					});
 					setUserEvents(res);
 				}
 			} catch (err) {
@@ -42,6 +47,7 @@ function EventConfig({ user }) {
 			}
 		}
 	}
+	console.log(userEvents);
 
 	return (
 		<section className="config__container">
@@ -59,6 +65,16 @@ function EventConfig({ user }) {
 			<AddEvent user={user} />
 			<UpdateEvent user={user} userEvents={userEvents} />
 			<RemoveEvent user={user} userEvents={userEvents} />
+
+			{userEvents.length > 0 && (
+				<h1 className="my__events">Meus eventos</h1>
+			)}
+			<section className="events__display">
+				{userEvents.length > 0 &&
+					userEvents.map(event => {
+						return <Event eventData={event} key={event._id} />;
+					})}
+			</section>
 		</section>
 	);
 }
