@@ -51,7 +51,11 @@ export const AppRoutes = () => {
 				/>
 			)}
 			<Switch>
-				<Route exact path="/" component={HomePage} />
+				<Route
+					exact
+					path="/"
+					render={props => <HomePage user={user} />}
+				/>
 				<Route exact path="/events" component={EventsPage} />
 				<Route
 					exact

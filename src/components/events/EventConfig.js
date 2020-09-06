@@ -47,7 +47,6 @@ function EventConfig({ user }) {
 			}
 		}
 	}
-	console.log(userEvents);
 
 	return (
 		<section className="config__container">
