@@ -88,6 +88,16 @@ select:focus {
 	text-align: left;
 }
 
+/* Animation default */
+.hidden {
+	display: none;
+}
+
+.not__hidden {
+	display: block;
+	animation: show 2s;
+}
+
 @keyframes show {
 	from {
 		opacity: 0;

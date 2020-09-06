@@ -51,7 +51,6 @@ function UpdateEvent({ user, userEvents }) {
 				user.token
 			);
 
-			console.log(res);
 			if (res.status === 0) {
 				setSuccess(res.success);
 			} else if (res.status === 1) {
@@ -76,7 +75,7 @@ function UpdateEvent({ user, userEvents }) {
 	}
 
 	return (
-		<section className="event__config">
+		<section className="event__config config__item hidden">
 			<h1>Atualizar Evento</h1>
 			{userEvents.length > 0 && (
 				<>
@@ -86,12 +85,14 @@ function UpdateEvent({ user, userEvents }) {
 						value={eventData.eventName}
 						onChange={handleEventData}
 					>
-						<option selected hidden>
+						<option defaultValue hidden>
 							Selecione um evento
 						</option>
 						;
 						{userEvents.map(event => {
-							return <option>{event.name}</option>;
+							return (
+								<option key={event._id}>{event.name}</option>
+							);
 						})}
 					</select>
 					<Input

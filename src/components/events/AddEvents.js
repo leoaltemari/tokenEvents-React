@@ -83,7 +83,7 @@ function AddEvent({ user }) {
 	}
 
 	return (
-		<section className="event__config">
+		<section className="event__config config__item hidden">
 			<h1>Adicionar Evento</h1>
 			<Input
 				type="text"

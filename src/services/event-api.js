@@ -118,4 +118,28 @@ EventApi.prototype.update = async (eventId, data, token) => {
 	}
 };
 
+EventApi.prototype.remove = async (eventId, token) => {
+	try {
+		const response = await axios.delete(
+			`${eventRequest.route}/${token}/${eventId}`
+		);
+
+		if (response.status === 202) {
+			if (response.data.message) {
+				return {
+					status: 1,
+					errors: response.data.message,
+				};
+			}
+		} else {
+			return {
+				status: 0,
+				success: response.data.message,
+			};
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 export default EventApi;

@@ -113,3 +113,20 @@
 		font-size: 15px;
 	}
 }
+
+/* display configs */
+.config__buttons {
+	margin: 0px 30%;
+	position: relative;
+	top: 10px;
+}
+
+@media (max-width: 500px) {
+	.config__buttons {
+		margin: 0px 20%;
+	}
+}
+
+.config__buttons button {
+	margin: 10px 0px;
+}
