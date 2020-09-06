@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserPage from "./pages/UserPage";
+import EventsPage from "./pages/EventsPage";
 
 export const AppRoutes = () => {
 	const [login, setLogin] = useState(true);
@@ -50,6 +51,7 @@ export const AppRoutes = () => {
 			)}
 			<Switch>
 				<Route exact path="/" component={HomePage} />
+				<Route exact path="/eventos" component={EventsPage} />
 				<Route
 					exact
 					path="/login"
