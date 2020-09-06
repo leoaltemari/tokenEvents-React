@@ -6,10 +6,10 @@ import Footer from "../components/homepage/Footer";
 import "../styles/homepage.css";
 import "../styles/utils.css";
 
-function Home() {
+function Home({ user }) {
 	return (
 		<main className="main__page">
-			<Banner />
+			<Banner user={user} />
 			<Footer />
 		</main>
 	);

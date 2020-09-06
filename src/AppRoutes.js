@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import UserPage from "./pages/UserPage";
 import EventsPage from "./pages/EventsPage";
+import MyEventsPage from "./pages/MyEventsPage";
 
 export const AppRoutes = () => {
 	const [login, setLogin] = useState(true);
@@ -50,8 +51,12 @@ export const AppRoutes = () => {
 				/>
 			)}
 			<Switch>
-				<Route exact path="/" component={HomePage} />
-				<Route exact path="/eventos" component={EventsPage} />
+				<Route
+					exact
+					path="/"
+					render={props => <HomePage user={user} />}
+				/>
+				<Route exact path="/events" component={EventsPage} />
 				<Route
 					exact
 					path="/login"
@@ -73,6 +78,14 @@ export const AppRoutes = () => {
 					exact
 					path="/user"
 					render={props => <UserPage user={user} getUser={getUser} />}
+				/>
+
+				<Route
+					exact
+					path="/user/events"
+					render={props => (
+						<MyEventsPage user={user} getUser={getUser} />
+					)}
 				/>
 			</Switch>
 		</BrowserRouter>

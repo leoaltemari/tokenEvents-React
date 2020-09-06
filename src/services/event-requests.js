@@ -1,5 +1,5 @@
 const eventRequests = {
-	route: "/event",
+	route: "/events",
 	getUserEvents: "/events/user",
 };
 

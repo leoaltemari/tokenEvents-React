@@ -46,7 +46,8 @@ input:focus {
 	margin-right: 10px;
 }
 
-.form__input {
+.form__input,
+select {
 	height: 40px;
 	width: 100%;
 	border: 1px solid #424242;
@@ -56,7 +57,8 @@ input:focus {
 	transition: 0.3s ease-out;
 }
 
-.form__input:focus {
+.form__input:focus,
+select:focus {
 	outline: none;
 	border: 1px solid #589dd4;
 }
@@ -84,6 +86,16 @@ input:focus {
 .form__success h6 {
 	margin: 5px 0px;
 	text-align: left;
+}
+
+/* Animation default */
+.hidden {
+	display: none;
+}
+
+.not__hidden {
+	display: block;
+	animation: show 2s;
 }
 
 @keyframes show {
