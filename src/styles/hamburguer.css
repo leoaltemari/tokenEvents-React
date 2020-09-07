@@ -1,0 +1,132 @@
+.menu {
+	background: #589dd4;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	right: 25px;
+	top: 7px;
+}
+
+.hamburguer {
+	position: relative;
+	display: block;
+	background: white;
+	width: 25px;
+	height: 2px;
+	top: 24px;
+	left: 13px;
+	transition: 0.5s ease-in-out;
+}
+
+.hamburguer:before,
+.hamburguer:after {
+	background: white;
+	content: "";
+	display: block;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	transition: 0.5s ease-in-out;
+}
+
+.hamburguer:before {
+	top: -7px;
+}
+
+.hamburguer:after {
+	bottom: -7px;
+}
+
+#menu-hamburguer {
+	display: none;
+}
+
+#menu-hamburguer:checked ~ label .hamburguer {
+	transform: rotate(45deg);
+}
+
+#menu-hamburguer:checked ~ label .hamburguer:before {
+	transform: rotate(90deg);
+	top: 0;
+}
+
+#menu-hamburguer:checked ~ label .hamburguer:after {
+	transform: rotate(90deg);
+	bottom: 0;
+}
+
+/* Makes dropdown menu smaller */
+@media (max-width: 500px) {
+	.menu {
+		width: 40px;
+		height: 40px;
+		top: 10px;
+	}
+	.hamburguer {
+		height: 2px;
+		width: 20px;
+		top: 20px;
+		left: 10px;
+	}
+	.hamburguer::before,
+	.hamburguer::after {
+		height: 2px;
+		width: 20px;
+	}
+
+	.hamburguer::before {
+		top: -6px;
+	}
+	.hamburguer::after {
+		top: 6px;
+	}
+
+	#menu-hamburguer:checked ~ label .hamburguer:before {
+		top: -0px;
+	}
+
+	#menu-hamburguer:checked ~ label .hamburguer:after {
+		top: 0px;
+	}
+}
+
+.menu {
+	cursor: pointer;
+	box-shadow: 0 0 0 0 #589dd4, 0 0 0 0 #589dd4;
+	transition: box-shadow 1.1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.menu:hover {
+	box-shadow: 0 0 0 8px #589dd4, 0 0 0 8px #589dd4;
+}
+
+input:checked ~ label .menu {
+	box-shadow: 0 0 0 130vw #589dd4, 0 0 0 130vh #589dd4;
+}
+
+input:checked ~ ul {
+	opacity: 1;
+}
+
+input:checked ~ ul li a {
+	display: block;
+}
+
+ul {
+	position: absolute;
+	top: 150px;
+	transform: translate(-50%, -50%);
+	list-style: none;
+	font-size: 20px;
+	opacity: 0;
+	transition: 0.25s 0.1s cubic-bezier(0, 1.07, 0, 1.02);
+	z-index: 2;
+}
+
+ul li a {
+	color: white;
+	display: hidden;
+	margin-bottom: 1em;
+	text-decoration: none;
+}
