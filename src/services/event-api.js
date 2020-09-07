@@ -142,4 +142,5 @@ EventApi.prototype.remove = async (eventId, token) => {
 	}
 };
 
+
 export default EventApi;

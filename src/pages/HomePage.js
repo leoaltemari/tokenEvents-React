@@ -10,7 +10,7 @@ function Home({ user }) {
 	return (
 		<main className="main__page">
 			<Banner user={user} />
-			<Footer />
+			<Footer user={user} />
 		</main>
 	);
 }
