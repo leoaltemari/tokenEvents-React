@@ -1,7 +1,6 @@
 import axios from "./axios";
 import userRequest from "./user-requests";
 
-
 function UserApi() {}
 
 UserApi.prototype.getUser = async id => {
@@ -146,6 +145,66 @@ UserApi.prototype.update = async (
 				status: 0,
 				success: response.data.message,
 			};
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+UserApi.prototype.invite = async (whoInvited, eventId, frienEmail, token) => {
+	const inviteData = {
+		whoInvited: whoInvited,
+		event: eventId,
+		email: frienEmail,
+		token: token,
+	};
+
+	try {
+		const response = await axios.post(
+			`${userRequest.route}${userRequest.invitation}`,
+			inviteData
+		);
+
+		if (response.status === 202) {
+			if (response.data.message) {
+				return {
+					status: 1,
+					errors: response.data.message,
+				};
+			}
+		} else {
+			return {
+				status: 0,
+				success: response.data.message,
+			};
+		}
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+UserApi.prototype.setStatus = async (status, eventId, user) => {
+	const setStatusData = {
+		status: status === 0 ? "false" : "true",
+		event: eventId,
+		user: user._id,
+		token: user.token,
+	};
+
+	try {
+		const response = await axios.put(
+			`${userRequest.route}${userRequest.invitation}`,
+			setStatusData
+		);
+
+		if (response.status === 202) {
+			if (response.data.message) {
+				return {
+					status: 1,
+					success: response.data.message,
+					user: response.data.user,
+				};
+			}
 		}
 	} catch (error) {
 		console.log(error);

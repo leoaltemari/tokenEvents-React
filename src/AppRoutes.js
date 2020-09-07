@@ -43,6 +43,7 @@ export const AppRoutes = () => {
 
 	return (
 		<BrowserRouter>
+			{/* Navbar */}
 			{login && (
 				<Navbar
 					loginState={loginHandleClick}
@@ -51,12 +52,15 @@ export const AppRoutes = () => {
 				/>
 			)}
 			<Switch>
+				{/* HomePage */}
 				<Route
 					exact
 					path="/"
 					render={props => <HomePage user={user} />}
 				/>
 				<Route exact path="/events" component={EventsPage} />
+
+				{/* LoginPage */}
 				<Route
 					exact
 					path="/login"
@@ -67,6 +71,8 @@ export const AppRoutes = () => {
 						/>
 					)}
 				/>
+
+				{/* RegisterPage */}
 				<Route
 					exact
 					path="/register"
@@ -74,12 +80,15 @@ export const AppRoutes = () => {
 						<RegisterPage loginState={loginHandleClick} />
 					)}
 				/>
+
+				{/* User Page */}
 				<Route
 					exact
 					path="/user"
 					render={props => <UserPage user={user} getUser={getUser} />}
 				/>
 
+				{/* Events Page */}
 				<Route
 					exact
 					path="/user/events"

@@ -43,9 +43,14 @@ function UserData({ user, getUser }) {
 
 		if (res.status === 0) {
 			setSuccess(res.success);
+
 			const currToken = user.token;
+			const currInvitations = user.invitations;
+
 			const newUser = await userApi.getUser(user._id);
+
 			newUser.token = currToken;
+			newUser.invitations = currInvitations;
 			getUser(newUser);
 		} else if (res.status === 1) {
 			if (res.errors) {
@@ -112,7 +117,7 @@ function UserData({ user, getUser }) {
 					{errors.length > 0 && (
 						<div className="form__errors">
 							{errors.map(item => {
-								return <h6>• {item}</h6>;
+								return <h6 key={item}>• {item}</h6>;
 							})}
 						</div>
 					)}

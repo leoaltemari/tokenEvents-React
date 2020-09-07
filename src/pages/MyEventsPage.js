@@ -8,7 +8,11 @@ import NotFound from "../components/utils/NotFound";
 function MyEventsPage({ user, getUser }) {
 	return (
 		<main className="main__page">
-			{user.token ? <EventConfig user={user} /> : <NotFound />}
+			{user.token ? (
+				<EventConfig user={user} getUser={getUser} />
+			) : (
+				<NotFound />
+			)}
 		</main>
 	);
 }

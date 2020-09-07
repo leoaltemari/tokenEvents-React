@@ -46,6 +46,7 @@ function Register({ loginState }) {
 			if (res.errors) {
 				const err = [];
 				err.push(res.errors);
+
 				setErrors(err);
 
 				document
@@ -53,13 +54,14 @@ function Register({ loginState }) {
 					.classList.add("form__errors__show");
 			}
 		} else {
+			res.errors.shift();
 			setErrors(res.errors);
 			document
 				.querySelector(".form__errors")
 				.classList.add("form__errors__show");
 		}
 	}
-	// console.log(errors);
+	
 	return (
 		<div className="register__content">
 			<form className="login__form register__form">
@@ -116,7 +118,7 @@ function Register({ loginState }) {
 				{errors.length > 0 && (
 					<div className="form__errors">
 						{errors.map(item => {
-							return <h6>• {item}</h6>;
+							return <h6 key={item}>• {item}</h6>;
 						})}
 					</div>
 				)}

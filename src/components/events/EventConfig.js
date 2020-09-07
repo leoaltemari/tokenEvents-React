@@ -9,8 +9,10 @@ import Event from "../utils/Event";
 import AddEvent from "./AddEvents";
 import UpdateEvent from "./UpdateEvents";
 import RemoveEvent from "./RemoveEvents";
+import InviteEvent from "./Invites";
+import ShowInvitations from "./ShowInvitations";
 
-function EventConfig({ user }) {
+function EventConfig({ user, getUser }) {
 	const [userEvents, setUserEvents] = useState([]);
 
 	useEffect(() => {
@@ -51,19 +53,44 @@ function EventConfig({ user }) {
 	return (
 		<section className="config__container">
 			<div className="config__buttons">
-				<button className="main__button" onClick={() => showConfig(0)}>
-					Adicionar Evento
-				</button>
-				<button className="main__button" onClick={() => showConfig(1)}>
-					Atualizar Eventos
-				</button>
-				<button className="main__button" onClick={() => showConfig(2)}>
-					Remover Eventos
-				</button>
+				<div className="config__grid__buttons">
+					<button
+						className="main__button"
+						onClick={() => showConfig(0)}
+					>
+						Adicionar Evento
+					</button>
+					<button
+						className="main__button"
+						onClick={() => showConfig(1)}
+					>
+						Atualizar Eventos
+					</button>
+				</div>
+				<div className="config__grid__buttons">
+					<button
+						className="main__button"
+						onClick={() => showConfig(2)}
+					>
+						Remover Eventos
+					</button>
+					<button
+						className="main__button"
+						onClick={() => showConfig(3)}
+					>
+						Convidar amigos
+					</button>
+				</div>
 			</div>
 			<AddEvent user={user} />
 			<UpdateEvent user={user} userEvents={userEvents} />
 			<RemoveEvent user={user} userEvents={userEvents} />
+			<InviteEvent user={user} userEvents={userEvents} />
+			<ShowInvitations
+				user={user}
+				invitations={user.invitations}
+				getUser={getUser}
+			/>
 
 			{userEvents.length > 0 && (
 				<h1 className="my__events">Meus eventos</h1>
