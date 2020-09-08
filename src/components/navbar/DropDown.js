@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../../styles/hamburguer.css";
 
 function DropDown({ loginState, user, logOutUser }) {
+	// Function to close the dropdown menu
 	function closeMenu(id) {
 		const checkBox = document.querySelector("#menu-hamburguer");
 		checkBox.checked = !checkBox.checked;
@@ -18,11 +19,15 @@ function DropDown({ loginState, user, logOutUser }) {
 	return (
 		<div>
 			<input id="menu-hamburguer" type="checkbox" />
+
+			{/* Menu display */}
 			<label htmlFor="menu-hamburguer">
 				<div className="menu">
 					<span className="hamburguer"></span>
 				</div>
 			</label>
+
+			{/* Menu Links */}
 			<ul>
 				<li>
 					<Link to="/" onClick={() => closeMenu()}>
@@ -45,6 +50,7 @@ function DropDown({ loginState, user, logOutUser }) {
 					</Link>
 				</li>
 				<li>
+					{/* Checks if the user is logged into the application */}
 					{!user.token ? (
 						<Link to="/login" onClick={() => closeMenu(4)}>
 							Login
@@ -56,6 +62,7 @@ function DropDown({ loginState, user, logOutUser }) {
 					)}
 				</li>
 				<li>
+					{/* Checks if the user is logged into the application */}
 					{user.token && (
 						<Link to="/" onClick={() => closeMenu(5)}>
 							Sair

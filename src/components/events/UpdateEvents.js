@@ -5,6 +5,8 @@ import "../../styles/utils.css";
 import EventApi from "../../services/event-api";
 import Input from "../utils/Input";
 
+
+// Component to Update a Event
 function UpdateEvent({ user, userEvents }) {
 	const [eventData, setEventData] = useState({
 		eventName: "",

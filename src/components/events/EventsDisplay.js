@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Event from "../utils/Event";
 import EventApi from "../../services/event-api";
 
+
+// Component to Display ALL user events
 function EventsDisplay({ selectedDate }) {
 	const [eventsList, setEventsList] = useState([]);
 

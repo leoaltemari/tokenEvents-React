@@ -1,8 +1,10 @@
 import axios from "./axios";
 import eventRequest from "./event-requests";
 
+// Class to make the requests to the API
 function EventApi() {}
 
+// GET ALL events
 EventApi.prototype.getAll = async () => {
 	try {
 		const response = await axios.get(eventRequest.route);
@@ -12,6 +14,7 @@ EventApi.prototype.getAll = async () => {
 	}
 };
 
+// GET ALL events by the date selected
 EventApi.prototype.getByDate = async date => {
 	try {
 		const response = await axios.get(`${eventRequest.route}/${date}`);
@@ -21,6 +24,7 @@ EventApi.prototype.getByDate = async date => {
 	}
 };
 
+// GET ALL USER events
 EventApi.prototype.getByUser = async (id, token) => {
 	try {
 		const response = await axios.get(
@@ -32,6 +36,7 @@ EventApi.prototype.getByUser = async (id, token) => {
 	}
 };
 
+// CREATE a new event
 EventApi.prototype.create = async (data, token) => {
 	const eventData = data;
 	eventData.token = token;
@@ -63,6 +68,7 @@ EventApi.prototype.create = async (data, token) => {
 	}
 };
 
+// UPDATE an event that already exists
 EventApi.prototype.update = async (eventId, data, token) => {
 	const eventData = {
 		token: token,
@@ -118,6 +124,7 @@ EventApi.prototype.update = async (eventId, data, token) => {
 	}
 };
 
+// DELETE an event
 EventApi.prototype.remove = async (eventId, token) => {
 	try {
 		const response = await axios.delete(
@@ -141,6 +148,5 @@ EventApi.prototype.remove = async (eventId, token) => {
 		console.log(error);
 	}
 };
-
 
 export default EventApi;

@@ -3,6 +3,7 @@ import userRequest from "./user-requests";
 
 function UserApi() {}
 
+// GET user data by its id
 UserApi.prototype.getUser = async id => {
 	try {
 		const response = await axios.get(`${userRequest.route}/${id}`);
@@ -13,6 +14,8 @@ UserApi.prototype.getUser = async id => {
 		console.log(err);
 	}
 };
+
+// AUTHENTICATE the user in the page
 UserApi.prototype.login = async (email, password) => {
 	if (!email || !password) {
 		return {
@@ -46,6 +49,7 @@ UserApi.prototype.login = async (email, password) => {
 	}
 };
 
+// CREATES a new USER
 UserApi.prototype.register = async (name, email, password, confirmPsw) => {
 	if (!name || !email || !password) {
 		return {
@@ -93,6 +97,7 @@ UserApi.prototype.register = async (name, email, password, confirmPsw) => {
 	}
 };
 
+// UPDATES a new USER
 UserApi.prototype.update = async (
 	name,
 	email,
@@ -151,6 +156,7 @@ UserApi.prototype.update = async (
 	}
 };
 
+// SEND an Invitation
 UserApi.prototype.invite = async (whoInvited, eventId, frienEmail, token) => {
 	const inviteData = {
 		whoInvited: whoInvited,
@@ -183,6 +189,7 @@ UserApi.prototype.invite = async (whoInvited, eventId, frienEmail, token) => {
 	}
 };
 
+// Accept or Refuse an Invitation
 UserApi.prototype.setStatus = async (status, eventId, user) => {
 	const setStatusData = {
 		status: status === 0 ? "false" : "true",

@@ -22,6 +22,8 @@ export const AppRoutes = () => {
 		setLogin(!login);
 	}
 
+	// Function to update the user data in all the components and save these data at
+	// the local storage
 	function getUser(user) {
 		if (user) {
 			window.localStorage.setItem("user", JSON.stringify(user));
@@ -29,11 +31,14 @@ export const AppRoutes = () => {
 		}
 	}
 
+	// Function to uremove the status of logged of the user in the page and all componets,
+	// it cleans the local storage too.
 	function logOut() {
 		window.localStorage.clear();
 		setUser({});
 	}
 
+	// When the page is open, it gets the user from the local storage if there any.
 	useEffect(() => {
 		const localUser = JSON.parse(window.localStorage.getItem("user"));
 		if (localUser !== null) {
@@ -41,6 +46,7 @@ export const AppRoutes = () => {
 		}
 	}, []);
 
+	// ROUTES
 	return (
 		<BrowserRouter>
 			{/* Navbar */}
@@ -51,6 +57,7 @@ export const AppRoutes = () => {
 					logOut={logOut}
 				/>
 			)}
+			
 			<Switch>
 				{/* HomePage */}
 				<Route
