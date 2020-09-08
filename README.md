@@ -20,7 +20,7 @@
 
 ### 📺 Apresentação:
 
-<strong>Token Events</strong> consiste em uma página web feita para um desafio técnico para as vagas de estagiário/CLT da empresa <a href="https://www.tokenlab.com.br/pt/" target="_blank">TokenLab - São Carlos</a>. 
+<strong>Token Events</strong> consiste em uma página web feita para um desafio técnico para as vagas de estagiário/CLT da empresa <a href="https://www.tokenlab.com.br/pt/" target="_blank">Tokenlab - São Carlos</a>. 
 A aplicação é um calendário de eventos, onde o usuário consegue criar eventos, editar eventos já existentes, remover eventos criados e também convidar outros usuários para seus eventos. Para que tudo ocorra, o usuário deve possuir uma conta na aplicação e estar logada nela para realizar as ações.
 
 <h3 align="center">
