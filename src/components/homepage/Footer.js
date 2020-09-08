@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 function Footer({ user }) {
 	return (
 		<footer className="main__footer">
+			{/* Footer link 1 */}
 			<Link
 				to={user.token ? "/user/events" : "/login"}
 				className="footer__item"
@@ -14,6 +15,8 @@ function Footer({ user }) {
 				/>
 				<p>Crie seus eventos de maneira rápida e fácil</p>
 			</Link>
+
+			{/* Footer link 2 */}
 			<Link
 				to={user.token ? "/user/events" : "/login"}
 				className="footer__item"
@@ -24,6 +27,8 @@ function Footer({ user }) {
 				/>
 				<p>Chame seus amigos para seus eventos e curtam juntos</p>
 			</Link>
+
+			{/* Footer link 3 */}
 			<Link to="/events" className="footer__item">
 				<img
 					src={require("../../assets/logos/search_logo.png")}

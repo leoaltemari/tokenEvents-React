@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Event from "../utils/Event";
 import UserApi from "../../services/user-api";
 
+
+// Component to Display user Invitations
 function ShowInvitations({ user, invitations, getUser }) {
 	const [invitationsList, setInvitationsList] = useState([]);
 

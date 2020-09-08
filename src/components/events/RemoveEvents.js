@@ -4,6 +4,8 @@ import "../../styles/utils.css";
 
 import EventApi from "../../services/event-api";
 
+
+// Component to Remove events
 function RemoveEvent({ user, userEvents }) {
 	const [eventData, setEventData] = useState({
 		eventName: "",

@@ -17,6 +17,7 @@ function UserData({ user, getUser }) {
 	const [errors, setErrors] = useState([]);
 	const [success, setSuccess] = useState("");
 
+	// Get the data to update
 	function handleUpdate(event) {
 		const target = event.target;
 		const value =
@@ -27,11 +28,17 @@ function UserData({ user, getUser }) {
 		});
 	}
 
+	// Updates user data
 	async function updateUser(event) {
+		// Messages reset
 		setErrors([]);
 		setSuccess("");
+
 		event.preventDefault();
+
 		const userApi = new UserApi();
+
+		// Request
 		const res = await userApi.update(
 			updateData.name,
 			updateData.email,
@@ -41,18 +48,23 @@ function UserData({ user, getUser }) {
 			user._id
 		);
 
+		// Response
+		// Succes
 		if (res.status === 0) {
 			setSuccess(res.success);
 
+			//Saving the token to not logout the user
 			const currToken = user.token;
 			const currInvitations = user.invitations;
 
+			// Get the updated data
 			const newUser = await userApi.getUser(user._id);
 
 			newUser.token = currToken;
 			newUser.invitations = currInvitations;
 			getUser(newUser);
 		} else if (res.status === 1) {
+			// ERROR in the input
 			if (res.errors) {
 				const err = [];
 				err.push(res.errors);
@@ -63,6 +75,7 @@ function UserData({ user, getUser }) {
 					.classList.add("form__errors__show");
 			}
 		} else {
+			// ERROR in the input
 			setErrors(res.errors);
 			document
 				.querySelector(".form__errors")
@@ -72,10 +85,15 @@ function UserData({ user, getUser }) {
 
 	return (
 		<section className="userdata">
+			{/* Background */}
 			<aside className="user__bkg bkg__left"></aside>
+
+			{/* Page content */}
 			<main className="user__content">
 				<div className="user__config">
 					<h3>Deseja alterar alguma informação sua?</h3>
+
+					{/* update NAME */}
 					<Input
 						type="text"
 						fieldName="Name"
@@ -84,6 +102,8 @@ function UserData({ user, getUser }) {
 						inputData={{ name: "name", value: updateData.name }}
 						handleLogin={handleUpdate}
 					/>
+
+					{/* update EMAIL */}
 					<Input
 						type="text"
 						fieldName="Email"
@@ -92,6 +112,8 @@ function UserData({ user, getUser }) {
 						inputData={{ name: "email", value: updateData.email }}
 						handleLogin={handleUpdate}
 					/>
+
+					{/* update PASSWORD */}
 					<Input
 						type="password"
 						fieldName="Senha"
@@ -103,6 +125,8 @@ function UserData({ user, getUser }) {
 						}}
 						handleLogin={handleUpdate}
 					/>
+
+					{/* Confirm PASSWORD */}
 					<Input
 						type="password"
 						fieldName="Confirme a Senha"
@@ -114,6 +138,8 @@ function UserData({ user, getUser }) {
 						}}
 						handleLogin={handleUpdate}
 					/>
+
+					{/* Display ERRORS */}
 					{errors.length > 0 && (
 						<div className="form__errors">
 							{errors.map(item => {
@@ -121,11 +147,15 @@ function UserData({ user, getUser }) {
 							})}
 						</div>
 					)}
+
+					{/* Display SUCCESS */}
 					{success.length > 0 && (
 						<div className="form__success">
 							<h6>{success}</h6>
 						</div>
 					)}
+
+					{/* UPDATE button */}
 					<div className="form__submit">
 						<button className="main__button" onClick={updateUser}>
 							Atualizar
@@ -133,6 +163,8 @@ function UserData({ user, getUser }) {
 					</div>
 				</div>
 			</main>
+
+			{/* Background */}
 			<aside className="user__bkg bkg__right"></aside>
 		</section>
 	);

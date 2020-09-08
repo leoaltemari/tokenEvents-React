@@ -5,6 +5,8 @@ import "../../styles/utils.css";
 import EventApi from "../../services/event-api";
 import Input from "../utils/Input";
 
+
+// Component to Create a new Event
 function AddEvent({ user }) {
 	const [eventData, setEventData] = useState({
 		creator: "",

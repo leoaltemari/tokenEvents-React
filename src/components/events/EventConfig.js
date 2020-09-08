@@ -15,12 +15,16 @@ import ShowInvitations from "./ShowInvitations";
 function EventConfig({ user, getUser }) {
 	const [userEvents, setUserEvents] = useState([]);
 
+	// Request to the API the user events data
 	useEffect(() => {
 		async function getUserEvents() {
 			const eventApi = new EventApi();
 			try {
+				// Request
 				if (user.token) {
 					const res = await eventApi.getByUser(user._id, user.token);
+
+					// Changes the date to Date type
 					res.forEach(event => {
 						event.startDate = new Date(event.startDate);
 						event.finishDate = new Date(event.finishDate);
@@ -34,6 +38,8 @@ function EventConfig({ user, getUser }) {
 		getUserEvents();
 	}, [user]);
 
+	// Animation to show and hide the selected page by the user.
+	// The pages are: ADD event, UPDATE event, REMOVE event, INVITE friend
 	function showConfig(id) {
 		const configItens = document.getElementsByClassName("config__item");
 
@@ -53,6 +59,8 @@ function EventConfig({ user, getUser }) {
 	return (
 		<section className="config__container">
 			<div className="config__buttons">
+			
+				{/* Buttons to select the page */}
 				<div className="config__grid__buttons">
 					<button
 						className="main__button"
@@ -82,16 +90,21 @@ function EventConfig({ user, getUser }) {
 					</button>
 				</div>
 			</div>
+
+			{/* Pages hidden, it show just the page that the user selected */}
 			<AddEvent user={user} />
 			<UpdateEvent user={user} userEvents={userEvents} />
 			<RemoveEvent user={user} userEvents={userEvents} />
 			<InviteEvent user={user} userEvents={userEvents} />
+			
+			{/* Show user invitations */}
 			<ShowInvitations
 				user={user}
 				invitations={user.invitations}
 				getUser={getUser}
 			/>
 
+			{/* Shows user Events */}
 			{userEvents.length > 0 && (
 				<h1 className="my__events">Meus eventos</h1>
 			)}

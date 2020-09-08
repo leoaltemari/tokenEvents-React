@@ -8,6 +8,7 @@ import DropDown from "./DropDown";
 function NavBar({ loginState, user, logOut }) {
 	let [dropDown, setDropDown] = useState(false);
 
+	// Puts a border under the page that the user is
 	function navBorder(id) {
 		const links = document.getElementsByClassName("navbar__link");
 		for (let i = 0; i < 3; i++) {
@@ -16,10 +17,14 @@ function NavBar({ loginState, user, logOut }) {
 		}
 	}
 
+	// Remove the border under the link
 	function removeNavBorder(event) {
+		// Closes the navbar if the Login page is selected
 		if (event === "login") {
 			loginState();
 		}
+
+		// Updates navbar data
 		if (event === "logout") {
 			logOut();
 			navBorder(0);
@@ -41,6 +46,7 @@ function NavBar({ loginState, user, logOut }) {
 	const dropDownMenu = (
 		<DropDown loginState={loginState} user={user} logOutUser={logOutUser} />
 	);
+
 	const normalMenu = (
 		<div>
 			<Links
@@ -73,6 +79,7 @@ function NavBar({ loginState, user, logOut }) {
 	);
 
 	// Responsivity of the navBar
+	// It turns the navbar menu into DropDown menu if the page width is under 800 pixels
 	useEffect(() => {
 		function onWindowResize() {
 			const windowWidth = window.innerWidth;
@@ -85,12 +92,14 @@ function NavBar({ loginState, user, logOut }) {
 
 	return (
 		<header className="navbar">
+			{/* Logo */}
 			<div to="/" className="navbar__logo">
 				<img
 					src={require("../../assets/logos/tevents_logo.png")}
 					alt="token-events-logo"
 				/>
 			</div>
+			{/* Links and LOGIN */}
 			{dropDown ? dropDownMenu : normalMenu}
 		</header>
 	);

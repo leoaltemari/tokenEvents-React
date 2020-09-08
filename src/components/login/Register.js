@@ -16,6 +16,7 @@ function Register({ loginState }) {
 	const [errors, setErrors] = useState([]);
 	const [success, setSuccess] = useState("");
 
+	// Function to get input data
 	function handleLogin(event) {
 		const target = event.target;
 		const value =
@@ -26,10 +27,13 @@ function Register({ loginState }) {
 		});
 	}
 
+	// Function to create a new user in the DB
 	async function registerUser(event) {
 		setErrors([]);
 		event.preventDefault();
 		const userApi = new UserApi();
+
+		// Request
 		const res = await userApi.register(
 			inputData.name,
 			inputData.email,
@@ -37,12 +41,15 @@ function Register({ loginState }) {
 			inputData.confirmPassword
 		);
 
+		// Response
 		if (res.status === 0) {
+			// Succes, user created
 			setSuccess(res.success);
 			setTimeout(() => {
 				document.querySelector("#login-page").click();
 			}, 3000);
 		} else if (res.status === 1) {
+			// Input errors
 			if (res.errors) {
 				const err = [];
 				err.push(res.errors);
@@ -54,6 +61,7 @@ function Register({ loginState }) {
 					.classList.add("form__errors__show");
 			}
 		} else {
+			// Input errors
 			res.errors.shift();
 			setErrors(res.errors);
 			document
@@ -61,10 +69,11 @@ function Register({ loginState }) {
 				.classList.add("form__errors__show");
 		}
 	}
-	
+
 	return (
 		<div className="register__content">
 			<form className="login__form register__form">
+				{/* Banner */}
 				<div className="form__banner">
 					<Link to="/">
 						<img
@@ -75,7 +84,10 @@ function Register({ loginState }) {
 					</Link>
 					<h4>Registre-se agora</h4>
 				</div>
+
+				{/* FORM fields */}
 				<div className="form__grid__fields">
+					{/* NAME input */}
 					<Input
 						type="text"
 						fieldName="Name"
@@ -84,6 +96,8 @@ function Register({ loginState }) {
 						inputData={{ name: "name", value: inputData.name }}
 						handleLogin={handleLogin}
 					/>
+
+					{/* EMAIL input */}
 					<Input
 						type="text"
 						fieldName="Email"
@@ -92,6 +106,8 @@ function Register({ loginState }) {
 						inputData={{ name: "email", value: inputData.email }}
 						handleLogin={handleLogin}
 					/>
+
+					{/* PASSWORD input */}
 					<Input
 						type="password"
 						fieldName="Senha"
@@ -103,6 +119,8 @@ function Register({ loginState }) {
 						}}
 						handleLogin={handleLogin}
 					/>
+
+					{/* CONFIRM PASSWORD input */}
 					<Input
 						type="password"
 						fieldName="Confirme a Senha"
@@ -115,6 +133,8 @@ function Register({ loginState }) {
 						handleLogin={handleLogin}
 					/>
 				</div>
+
+				{/* Display ERRORS */}
 				{errors.length > 0 && (
 					<div className="form__errors">
 						{errors.map(item => {
@@ -122,16 +142,22 @@ function Register({ loginState }) {
 						})}
 					</div>
 				)}
+
+				{/* Display SUCCESS message */}
 				{success.length > 0 && (
 					<div className="form__success">
 						<h6>{success}</h6>
 					</div>
 				)}
+
+				{/* Register button */}
 				<div className="form__submit">
 					<button className="main__button" onClick={registerUser}>
 						Registrar
 					</button>
 				</div>
+
+				{/* Link to login */}
 				<div className="login__register">
 					<h4>Já possui uma conta?</h4>
 					<h5>
@@ -139,6 +165,8 @@ function Register({ loginState }) {
 					</h5>
 				</div>
 			</form>
+
+			{/* Externals */}
 			<div className="login__bkg"></div>
 			<Link to="/login" id="login-page" />
 		</div>

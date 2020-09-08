@@ -5,6 +5,7 @@ import "../../styles/utils.css";
 import Input from "../utils/Input";
 import UserApi from "../../services/user-api";
 
+// Component to Invite a friend to an event
 function Invite({ user, userEvents, getUser }) {
 	const [inviteData, setInviteData] = useState({
 		eventName: "",
