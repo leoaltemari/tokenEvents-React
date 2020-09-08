@@ -84,17 +84,21 @@
 /* Event config */
 .event__config {
 	padding: 20px 100px;
-	border-bottom: 1px solid rgb(190, 190, 190);
+	border-top: 1px solid rgb(190, 190, 190);
+	margin: 0px 10px;
 }
+
 .event__config h1,
 .my__events {
 	color: #589dd4;
 	text-align: center;
 }
+
 .my__events {
 	margin: 0px 10px;
 	padding-top: 20px;
 	border-top: 1px solid rgb(196, 196, 196);
+	margin-top: 20px;
 }
 
 .event__config h2 {
@@ -128,10 +132,19 @@
 
 /* display configs */
 .config__buttons {
-	margin: 0px 30%;
+	margin: 0px 50px;
 	position: relative;
 	top: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-column-gap: 15px;
+}
+
+.config__grid__buttons {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	grid-column-gap: 15px;
 }
 
 @media (max-width: 500px) {
@@ -142,4 +155,55 @@
 
 .config__buttons button {
 	margin: 10px 0px;
+}
+
+/* Invitations styles */
+.invitation {
+	text-align: center;
+	padding: 5px 0px;
+	text-align: center;
+}
+
+.invitation:hover {
+	box-shadow: 0px 0px 5px rgb(0, 0, 0, 0.5);
+	border-radius: 10px;
+}
+
+.invitation h3 {
+	font-size: 15px;
+	margin-top: 10px;
+	color: #424242;
+}
+
+.invitation__grid__buttons {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 10px;
+	margin: 0px 20%;
+	padding: 0px 10px;
+}
+
+.invitation__button {
+	font-size: 8px;
+	padding: 10px 0px;
+}
+
+.accept {
+	background-color: rgb(0, 172, 0);
+}
+.accept:hover {
+	background-color: rgb(0, 122, 0);
+}
+
+.refuse {
+	background-color: rgb(172, 0, 0);
+}
+.refuse:hover {
+	background-color: rgb(122, 0, 0);
+}
+
+.border__title {
+	padding-top: 20px;
+	margin: 0px 10px;
+	border-top: 1px solid rgb(196, 196, 196);
 }

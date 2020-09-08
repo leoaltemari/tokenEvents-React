@@ -166,7 +166,7 @@ function UpdateEvent({ user, userEvents }) {
 					{errors.length > 0 && (
 						<div className="form__errors">
 							{errors.map(item => {
-								return <h6>• {item}</h6>;
+								return <h6 key={item}>• {item}</h6>;
 							})}
 						</div>
 					)}

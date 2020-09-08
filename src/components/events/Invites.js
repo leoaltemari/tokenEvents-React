@@ -2,11 +2,13 @@ import React, { useState } from "react";
 
 import "../../styles/utils.css";
 
-import EventApi from "../../services/event-api";
+import Input from "../utils/Input";
+import UserApi from "../../services/user-api";
 
-function RemoveEvent({ user, userEvents }) {
-	const [eventData, setEventData] = useState({
+function Invite({ user, userEvents, getUser }) {
+	const [inviteData, setInviteData] = useState({
 		eventName: "",
+		friendEmail: "",
 	});
 
 	const [errors, setErrors] = useState([]);
@@ -17,29 +19,40 @@ function RemoveEvent({ user, userEvents }) {
 		const value =
 			target.type === "checkbox" ? target.checked : target.value;
 		const name = target.name;
-		setEventData(prevData => {
+		setInviteData(prevData => {
 			return { ...prevData, [name]: value };
 		});
 	}
 
-	async function remove() {
+	async function invite() {
 		setErrors([]);
 		setSuccess("");
 
 		// Any event was selected
-		if (eventData.eventName.length === 0) {
-			setErrors(["Selecione um evento para remover!"]);
+		if (inviteData.eventName.length === 0) {
+			setErrors(["Selecione um evento para convidar!"]);
+			return;
+		}
+
+		// Any  email was selected
+		if (inviteData.friendEmail.length === 0) {
+			setErrors(["Preencha o email do amigo!"]);
 			return;
 		}
 
 		// Request
 		try {
-			const eventApi = new EventApi();
-			const eventToRemove = userEvents.find(
-				item => item.name === eventData.eventName
+			const userApi = new UserApi();
+			const eventToInvite = userEvents.find(
+				item => item.name === inviteData.eventName
 			);
 
-			const res = await eventApi.remove(eventToRemove._id, user.token);
+			const res = await userApi.invite(
+				user._id,
+				eventToInvite._id,
+				inviteData.friendEmail,
+				user.token
+			);
 
 			if (res.status === 0) {
 				setSuccess(res.success);
@@ -66,17 +79,17 @@ function RemoveEvent({ user, userEvents }) {
 
 	return (
 		<section className="event__config config__item hidden">
-			<h1>Remover Evento</h1>
+			<h1>Convidar amigos</h1>
 			{userEvents.length > 0 && (
 				<>
-					<h2>Selecione um evento para remover</h2>
+					<h2>Selecione um evento para convidar amigos</h2>
 					<select
 						name="eventName"
-						value={eventData.eventName}
+						value={inviteData.eventName}
 						onChange={handleEventData}
 					>
 						<option defaultValue hidden>
-							Selecione um evento
+							Selecione um evento para convidar um amigo
 						</option>
 
 						{userEvents.map(event => {
@@ -86,6 +99,17 @@ function RemoveEvent({ user, userEvents }) {
 						})}
 					</select>
 
+					<Input
+						type="text"
+						fieldName="Email do(a) amigo(a)"
+						icon="user_icon"
+						place="Email do(a) amigo(a)"
+						inputData={{
+							name: "friendEmail",
+							value: inviteData.friendEmail,
+						}}
+						handleLogin={handleEventData}
+					/>
 					{errors.length > 0 && (
 						<div className="form__errors">
 							{errors.map(item => {
@@ -99,8 +123,8 @@ function RemoveEvent({ user, userEvents }) {
 						</div>
 					)}
 
-					<button className="main__button" onClick={remove}>
-						Remover
+					<button className="main__button" onClick={invite}>
+						Convidar
 					</button>
 				</>
 			)}
@@ -111,4 +135,4 @@ function RemoveEvent({ user, userEvents }) {
 	);
 }
 
-export default RemoveEvent;
+export default Invite;
